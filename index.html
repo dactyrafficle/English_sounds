@@ -1,0 +1,181 @@
+<html>
+
+<style>
+
+html, body {
+ font-family: calibri;
+}
+
+.mytables {
+ border-collapse: collapse;
+}
+.mytables td {
+ border: 1px solid #ddd;
+ padding: 1vh;
+}
+
+
+</style>
+
+<table id='mytable' class='mytables'></table>
+
+<script>
+
+let arr = [
+  {"letter_combination":"ou","IPA_prononciation":"ou(ə)","word":"hour"},
+  {"letter_combination":"ou","IPA_prononciation":"ou(ə)","word":"sour"},
+  {"letter_combination":"ow","IPA_prononciation":"ō","word":"low"},
+  {"letter_combination":"ow","IPA_prononciation":"ō","word":"glow"},
+  {"letter_combination":"oe","IPA_prononciation":"ō","word":"toe"},
+  {"letter_combination":"ure","IPA_prononciation":"o͝o","word":"lure"},
+  {"letter_combination":"ure","IPA_prononciation":"o͝o","word":"sure"},
+  {"letter_combination":"ure","IPA_prononciation":"ər","word":"lure"},
+  {"letter_combination":"ure","IPA_prononciation":"ər","word":"sure"},
+  {"letter_combination":"oor","IPA_prononciation":"o͝o","word":"poor"},
+  {"letter_combination":"oor","IPA_prononciation":"o͝o","word":"boor"},
+  {"letter_combination":"ou","IPA_prononciation":"ou(ə)","word":"flour"},
+  {"letter_combination":"ower","IPA_prononciation":"ou(ə)","word":"tower"},
+  {"letter_combination":"ower","IPA_prononciation":"ou(ə)","word":"power"},
+  {"letter_combination":"ou","IPA_prononciation":"ou(ə)","word":"dour"},
+  {"letter_combination":"ou","IPA_prononciation":"ou(ə)","word":"our"},
+  {"letter_combination":"ower","IPA_prononciation":"ou(ə)","word":"flower"},
+  {"letter_combination":"ower","IPA_prononciation":"ou(ə)","word":"glower"},
+  {"letter_combination":"ow","IPA_prononciation":"ou","word":"how"},
+  {"letter_combination":"ow","IPA_prononciation":"ou","word":"now"},
+  {"letter_combination":"ow","IPA_prononciation":"ou","word":"cow"},
+  {"letter_combination":"ow","IPA_prononciation":"ou","word":"brown"},
+  {"letter_combination":"ough","IPA_prononciation":"ou","word":"bough"},
+  {"letter_combination":"ow","IPA_prononciation":"ō","word":"slow"},
+  {"letter_combination":"ow","IPA_prononciation":"ō","word":"snow"},
+  {"letter_combination":"ow","IPA_prononciation":"ō","word":"throw"},
+  {"letter_combination":"o","IPA_prononciation":"ō","word":"no"},
+  {"letter_combination":"o","IPA_prononciation":"ō","word":"so"},
+  {"letter_combination":"o","IPA_prononciation":"ō","word":"go"},
+  {"letter_combination":"ow","IPA_prononciation":"ō","word":"sow"},
+  {"letter_combination":"ow","IPA_prononciation":"ou","word":"sow"},
+  {"letter_combination":"au","IPA_prononciation":"ou","word":"frau"},
+  {"letter_combination":"ir","IPA_prononciation":"ər","word":"fir"},
+  {"letter_combination":"or","IPA_prononciation":"ər","word":"for"},
+  {"letter_combination":"or","IPA_prononciation":"ôr","word":"for"},
+  {"letter_combination":"oe","IPA_prononciation":"ō","word":"hoe"},
+  {"letter_combination":"ou","IPA_prononciation":"ôr","word":"four"},
+  {"letter_combination":"ore","IPA_prononciation":"ôr","word":"more"},
+  {"letter_combination":"ou","IPA_prononciation":"ôr","word":"your"},
+  {"letter_combination":"ou","IPA_prononciation":"ôr","word":"pour"},
+  {"letter_combination":"eau","IPA_prononciation":"ō","word":"plateau"},
+  {"letter_combination":"eau","IPA_prononciation":"ō","word":"tableau"},
+  {"letter_combination":"ough","IPA_prononciation":"əf","word":"tough"},
+  {"letter_combination":"ough","IPA_prononciation":"əf","word":"rough"},
+  {"letter_combination":"ough","IPA_prononciation":"äf","word":"cough"},
+  {"letter_combination":"ough","IPA_prononciation":"ō","word":"dough"},
+  {"letter_combination":"ough","IPA_prononciation":"o͞o","word":"through"},
+  {"letter_combination":"ue","IPA_prononciation":"o͞o","word":"true"},
+  {"letter_combination":"ou","IPA_prononciation":"o͝o","word":"amour"},
+  {"letter_combination":"ou","IPA_prononciation":"o͝o","word":"velour"},
+  {"letter_combination":"ou","IPA_prononciation":"ər","word":"glamour"},
+  {"letter_combination":"ou","IPA_prononciation":"ər","word":"savour"},
+  {"letter_combination":"ou","IPA_prononciation":"ər","word":"vigour"},
+  {"letter_combination":"ou","IPA_prononciation":"o͞o","word":"you"},
+  {"letter_combination":"er","IPA_prononciation":"ər","word":"danger"},
+  {"letter_combination":"ol","IPA_prononciation":"ä","word":"solder"},
+  {"letter_combination":"er","IPA_prononciation":"ər","word":"solder"},
+  {"letter_combination":"oor","IPA_prononciation":"ôr","word":"floor"},
+  {"letter_combination":"oor","IPA_prononciation":"ôr","word":"door"},
+  {"letter_combination":"or","IPA_prononciation":"ər","word":"doctor"},
+  {"letter_combination":"or","IPA_prononciation":"ər","word":"labor"},
+  {"letter_combination":"or","IPA_prononciation":"ôr","word":"decor"}
+]
+
+
+console.log(arr);
+
+// get all the letter_combinations
+// get all the IPA_prononciations
+
+// make a table with each
+
+let letter_combinations = [];
+for (let i = 0; i < arr.length; i++) {
+ if (letter_combinations.indexOf(arr[i].letter_combination) === -1) {
+  letter_combinations.push(arr[i].letter_combination);
+ }
+}
+
+letter_combinations.sort();
+console.log(letter_combinations);
+
+let IPA_prononciations = [];
+for (let i = 0; i < arr.length; i++) {
+ if (IPA_prononciations.indexOf(arr[i].IPA_prononciation) === -1) {
+  IPA_prononciations.push(arr[i].IPA_prononciation);
+ }
+}
+
+IPA_prononciations.sort();
+console.log(IPA_prononciations);
+
+// make the table
+
+for (let i = 0; i < letter_combinations.length+1; i++) {
+ let tr = document.createElement('tr');
+ 
+ if (i === 0 ) {
+  let td = document.createElement('td');
+  td.innerHTML = '<p>IPA prononciation &gt; <br> letter combination v </p>';
+  tr.appendChild(td);
+  
+  for (let j = 0; j < IPA_prononciations.length; j++) {
+    let td = document.createElement('td');
+    td.innerHTML = '<p>' + IPA_prononciations[j] + '</p>';
+    tr.appendChild(td);
+  }
+  
+  
+ }
+ 
+ if (i > 0) {
+ 
+  let td = document.createElement('td');
+  td.innerHTML = '<p>' + letter_combinations[i-1] + '</p>';
+  tr.appendChild(td);
+  
+  for (let j = 0; j < IPA_prononciations.length; j++) {
+    let td = document.createElement('td');
+    // td.innerHTML = '<p> &middot; </p>';
+    
+    // add the contents
+    for (let n = 0; n < arr.length; n++) {
+      if (arr[n].letter_combination === letter_combinations[i-1] && arr[n].IPA_prononciation === IPA_prononciations[j]) {
+        let p = document.createElement('p');
+        p.innerHTML = arr[n].word;
+        td.appendChild(p);
+      }
+    }
+    
+    
+    tr.appendChild(td);
+  }
+  
+  
+
+  
+  
+  
+  
+ }
+ 
+ 
+ 
+ mytable.appendChild(tr);
+ 
+ 
+ 
+}
+
+
+
+
+
+</script>
+
+</html>
