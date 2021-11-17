@@ -1,5 +1,8 @@
 <html>
 
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
 
 html, body {
@@ -14,80 +17,66 @@ html, body {
  padding: 1vh;
 }
 
+.column-header {
+ cursor: pointer;
+}
+/* minimal */
+.table {
+ display: table;
+}
+.row {
+ display: table-row-group;
+}
+.cell {
+ display: table-cell;
+}
 
+/* borders + padding */ 
+.cell {
+ padding: 3px;
+ border-bottom: 1px solid #999;
+ border-right: 1px solid #999;
+}
+.row:nth-child(1) .cell {
+ border-top: 1px solid #999;
+}
+.cell:nth-child(1) {
+ border-left: 1px solid #999;
+}
+
+/* vertically center cell child-div */ 
+.cell {
+ vertical-align: middle;
+}
+.inner {
+  display: inline-block;
+}
 </style>
+
+
+<!-- div with class='inner' will be vertically centered -->
+<!--
+<div class='table'>
+ <div class='row'>
+  <div class='cell'><div class='inner'>a1</div></div>
+  <div class='cell'><div class='inner'>b1</div></div>
+ </div>
+ <div class='row'>
+  <div class='cell'><div class='inner'>a2</div></div>
+  <div class='cell'><div class='inner'>b2</div></div>
+ </div>
+</div>
+-->
 
 <table id='mytable' class='mytables'></table>
 
 <script>
 
-let arr = [
-  {"letter_combination":"ou","IPA_prononciation":"ou(ə)","word":"hour"},
-  {"letter_combination":"ou","IPA_prononciation":"ou(ə)","word":"sour"},
-  {"letter_combination":"ow","IPA_prononciation":"ō","word":"low"},
-  {"letter_combination":"ow","IPA_prononciation":"ō","word":"glow"},
-  {"letter_combination":"oe","IPA_prononciation":"ō","word":"toe"},
-  {"letter_combination":"ure","IPA_prononciation":"o͝o","word":"lure"},
-  {"letter_combination":"ure","IPA_prononciation":"o͝o","word":"sure"},
-  {"letter_combination":"ure","IPA_prononciation":"ər","word":"lure"},
-  {"letter_combination":"ure","IPA_prononciation":"ər","word":"sure"},
-  {"letter_combination":"oor","IPA_prononciation":"o͝o","word":"poor"},
-  {"letter_combination":"oor","IPA_prononciation":"o͝o","word":"boor"},
-  {"letter_combination":"ou","IPA_prononciation":"ou(ə)","word":"flour"},
-  {"letter_combination":"ower","IPA_prononciation":"ou(ə)","word":"tower"},
-  {"letter_combination":"ower","IPA_prononciation":"ou(ə)","word":"power"},
-  {"letter_combination":"ou","IPA_prononciation":"ou(ə)","word":"dour"},
-  {"letter_combination":"ou","IPA_prononciation":"ou(ə)","word":"our"},
-  {"letter_combination":"ower","IPA_prononciation":"ou(ə)","word":"flower"},
-  {"letter_combination":"ower","IPA_prononciation":"ou(ə)","word":"glower"},
-  {"letter_combination":"ow","IPA_prononciation":"ou","word":"how"},
-  {"letter_combination":"ow","IPA_prononciation":"ou","word":"now"},
-  {"letter_combination":"ow","IPA_prononciation":"ou","word":"cow"},
-  {"letter_combination":"ow","IPA_prononciation":"ou","word":"brown"},
-  {"letter_combination":"ough","IPA_prononciation":"ou","word":"bough"},
-  {"letter_combination":"ow","IPA_prononciation":"ō","word":"slow"},
-  {"letter_combination":"ow","IPA_prononciation":"ō","word":"snow"},
-  {"letter_combination":"ow","IPA_prononciation":"ō","word":"throw"},
-  {"letter_combination":"o","IPA_prononciation":"ō","word":"no"},
-  {"letter_combination":"o","IPA_prononciation":"ō","word":"so"},
-  {"letter_combination":"o","IPA_prononciation":"ō","word":"go"},
-  {"letter_combination":"ow","IPA_prononciation":"ō","word":"sow"},
-  {"letter_combination":"ow","IPA_prononciation":"ou","word":"sow"},
-  {"letter_combination":"au","IPA_prononciation":"ou","word":"frau"},
-  {"letter_combination":"ir","IPA_prononciation":"ər","word":"fir"},
-  {"letter_combination":"or","IPA_prononciation":"ər","word":"for"},
-  {"letter_combination":"or","IPA_prononciation":"ôr","word":"for"},
-  {"letter_combination":"oe","IPA_prononciation":"ō","word":"hoe"},
-  {"letter_combination":"ou","IPA_prononciation":"ôr","word":"four"},
-  {"letter_combination":"ore","IPA_prononciation":"ôr","word":"more"},
-  {"letter_combination":"ou","IPA_prononciation":"ôr","word":"your"},
-  {"letter_combination":"ou","IPA_prononciation":"ôr","word":"pour"},
-  {"letter_combination":"eau","IPA_prononciation":"ō","word":"plateau"},
-  {"letter_combination":"eau","IPA_prononciation":"ō","word":"tableau"},
-  {"letter_combination":"ough","IPA_prononciation":"əf","word":"tough"},
-  {"letter_combination":"ough","IPA_prononciation":"əf","word":"rough"},
-  {"letter_combination":"ough","IPA_prononciation":"äf","word":"cough"},
-  {"letter_combination":"ough","IPA_prononciation":"ō","word":"dough"},
-  {"letter_combination":"ough","IPA_prononciation":"o͞o","word":"through"},
-  {"letter_combination":"ue","IPA_prononciation":"o͞o","word":"true"},
-  {"letter_combination":"ou","IPA_prononciation":"o͝o","word":"amour"},
-  {"letter_combination":"ou","IPA_prononciation":"o͝o","word":"velour"},
-  {"letter_combination":"ou","IPA_prononciation":"ər","word":"glamour"},
-  {"letter_combination":"ou","IPA_prononciation":"ər","word":"savour"},
-  {"letter_combination":"ou","IPA_prononciation":"ər","word":"vigour"},
-  {"letter_combination":"ou","IPA_prononciation":"o͞o","word":"you"},
-  {"letter_combination":"er","IPA_prononciation":"ər","word":"danger"},
-  {"letter_combination":"ol","IPA_prononciation":"ä","word":"solder"},
-  {"letter_combination":"er","IPA_prononciation":"ər","word":"solder"},
-  {"letter_combination":"oor","IPA_prononciation":"ôr","word":"floor"},
-  {"letter_combination":"oor","IPA_prononciation":"ôr","word":"door"},
-  {"letter_combination":"or","IPA_prononciation":"ər","word":"doctor"},
-  {"letter_combination":"or","IPA_prononciation":"ər","word":"labor"},
-  {"letter_combination":"or","IPA_prononciation":"ôr","word":"decor"}
-]
 
+let data = fetch('filename.json?x=' + Math.random()).then(r => r.json()).then(arr => {
 
-console.log(arr);
+ // xObjArr
+ console.log(arr);
 
 // get all the letter_combinations
 // get all the IPA_prononciations
@@ -125,7 +114,25 @@ for (let i = 0; i < letter_combinations.length+1; i++) {
   tr.appendChild(td);
   
   for (let j = 0; j < IPA_prononciations.length; j++) {
+  
+  
+    // THESE ARE THE COLUMN HEADER
     let td = document.createElement('td');
+    
+    td.classList.add('column-header');
+    td.classList.add(IPA_prononciations[j]);
+    
+    td.addEventListener('click', function() {
+    
+      let IPA_char = IPA_prononciations[j];
+      console.log(IPA_char);
+      
+      // here 
+      
+    
+    });
+    
+    
     td.innerHTML = '<p>' + IPA_prononciations[j] + '</p>';
     tr.appendChild(td);
   }
@@ -140,12 +147,17 @@ for (let i = 0; i < letter_combinations.length+1; i++) {
   tr.appendChild(td);
   
   for (let j = 0; j < IPA_prononciations.length; j++) {
+  
+    // THE CELLS
     let td = document.createElement('td');
+    td.classList.add(IPA_prononciations[j]);
+    
     // td.innerHTML = '<p> &middot; </p>';
     
     // add the contents
     for (let n = 0; n < arr.length; n++) {
       if (arr[n].letter_combination === letter_combinations[i-1] && arr[n].IPA_prononciation === IPA_prononciations[j]) {
+      
         let p = document.createElement('p');
         p.innerHTML = arr[n].word;
         td.appendChild(p);
@@ -171,6 +183,23 @@ for (let i = 0; i < letter_combinations.length+1; i++) {
  
  
 }
+
+
+
+// filter should work like this:
+// filter : {rows:[], cols:[]}
+// and then it starts from scratch each time, based on those specs
+
+// if i click on a sound, it goes thru the column, and greys out rows that do not have entries
+
+
+
+
+
+
+});
+
+
 
 
 
