@@ -56,3 +56,28 @@ html, body {
   font-weight: bold;
   color: #3366cc;
 }
+.triangle-down {
+    width: 0;
+    height: 0;
+    margin: 0.25vh;
+    margin-top: 0.5vh;
+    margin-right: 0.5vh;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 10px solid #3366cc;
+    font-size: 0;
+    line-height: 0;
+    float: left;
+}
+.triangle-right {
+    width: 0;
+    height: 0;
+    margin: 0.25vh;
+    margin-left: 0.5vh;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-left: 10px solid #3366cc;
+    font-size: 0;
+    line-height: 0;
+    float: right;
+}
