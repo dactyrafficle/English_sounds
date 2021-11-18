@@ -42,7 +42,7 @@ for (let i = 0; i < letter_combinations.length+1; i++) {
  
  if (i === 0 ) {
   let td = document.createElement('td');
-  td.innerHTML = '<p>IPA prononciation &gt; <br> letter combination v </p>';
+  td.innerHTML = '<p>IPA prononciation<span class="arrow">&#x2BC8;</span></p><p style="border-bottom: 1px solid #999;"></p><p><span class="arrow">&#x2BC6;</span>letter combination</p>';
   tr.appendChild(td);
   
   for (let j = 0; j < IPA_prononciations.length; j++) {

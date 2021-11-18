@@ -17,10 +17,7 @@ html, body {
  cursor: pointer;
 }
 
-/* minimal */
-.table {
- display: table;
-}
+
 .row {
  display: table-row-group;
 }
@@ -51,4 +48,11 @@ html, body {
 
 .highlight {
   background-color: #c2d1f0;
+}
+.arrow {
+  font-family: monospace;
+  font-size: 1em;
+  padding: 0.25vh;
+  font-weight: bold;
+  color: #3366cc;
 }
