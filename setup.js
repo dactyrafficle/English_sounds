@@ -28,8 +28,16 @@ let obj = {
 
 let data = fetch('filename.json?x=' + Math.random()).then(r => r.json()).then(arr => {
 
+ document.getElementById('wrap').style.height = window.innerHeight*.98 + 'px';
+
  // xObjArr
  console.log(arr);
+
+
+document.getElementById("wrap").addEventListener("scroll",function(){
+   var translate = "translate(0,"+this.scrollTop+"px)";
+   this.querySelector("thead").style.transform = translate;
+});
 
 // get all the letter_combinations
 // get all the IPA_prononciations
