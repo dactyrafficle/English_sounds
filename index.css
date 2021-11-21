@@ -23,23 +23,20 @@ html, body {
 }
 
 div.conatiner {
-  /* overflow: scroll; */
+ overflow: scroll;
 }
 
 
 
-thead th {
-  position: -webkit-sticky; /* for Safari */
+thead {
   position: sticky;
   top: 0;
 }
-thead th:first-child {
+thead:first-child {
   left: 0;
   z-index: 1;
 }
-
 tbody th {
-  position: -webkit-sticky; /* for Safari */
   position: sticky;
   left: 0;
 }
