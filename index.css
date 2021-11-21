@@ -29,12 +29,12 @@ div.conatiner {
 
 
 thead {
-  position: sticky;
-  top: 0;
+  /* position: sticky; 
+  top: 0; */
 }
 thead:first-child {
-  left: 0;
-  z-index: 1;
+  /* left: 0;
+  z-index: 1; */
 }
 tbody th {
   position: sticky;
