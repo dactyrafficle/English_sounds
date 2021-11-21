@@ -23,7 +23,7 @@ html, body {
 }
 
 div.conatiner {
-  overflow: scroll;
+  /* overflow: scroll; */
 }
 
 
