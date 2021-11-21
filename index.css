@@ -1,14 +1,19 @@
 html, body {
  font-family: calibri;
+ background-color: #fff;
 }
 
 .mytables {
+ position: relative;
  border-collapse: collapse;
 }
-.mytables td {
+.mytables th, .mytables td {
  border: 1px solid #ddd;
  padding: 1vh;
+ background-color: #fff;
 }
+
+
 
 .column-header {
  cursor: pointer;
@@ -17,45 +22,47 @@ html, body {
  cursor: pointer;
 }
 
-
-.row {
- display: table-row-group;
-}
-.cell {
- display: table-cell;
+div.conatiner {
+  overflow: scroll;
 }
 
-/* borders + padding */ 
-.cell {
- padding: 3px;
- border-bottom: 1px solid #999;
- border-right: 1px solid #999;
+
+
+thead th {
+  position: -webkit-sticky; /* for Safari */
+  position: sticky;
+  top: 0;
 }
-.row:nth-child(1) .cell {
- border-top: 1px solid #999;
-}
-.cell:nth-child(1) {
- border-left: 1px solid #999;
+thead th:first-child {
+  left: 0;
+  z-index: 1;
 }
 
-/* vertically center cell child-div */ 
-.cell {
- vertical-align: middle;
-}
-.inner {
-  display: inline-block;
+tbody th {
+  position: -webkit-sticky; /* for Safari */
+  position: sticky;
+  left: 0;
 }
 
-.highlight {
+.row-header {
+  background-color: #999;
+}
+
+
+td.no-highlight {
+  background-color: #fff;
+}
+th.no-highlight {
+  background-color: #fff;
+}
+
+.mytables th.highlight {
   background-color: #c2d1f0;
 }
-.arrow {
-  font-family: monospace;
-  font-size: 1em;
-  padding: 0.25vh;
-  font-weight: bold;
-  color: #3366cc;
+.mytables td.highlight {
+  background-color: #c2d1f0;
 }
+
 .triangle-down {
     width: 0;
     height: 0;

@@ -1,4 +1,25 @@
 
+/*
+
+make the table w all the words
+
+
+click the column / row headers
+add them to the object
+cells which get at least 1, get highlighted
+
+double click column / row header to shrink and grey it
+
+freeze panes
+
+
+
+
+loop over the words, and only add the ones which belong to one or more category
+
+for each word, you add the number selected
+
+*/
 
 let obj = {
   'col':null,
@@ -38,20 +59,29 @@ console.log(IPA_prononciations);
 // make the table
 
 for (let i = 0; i < letter_combinations.length+1; i++) {
+  
+ // MAKE A ROW
  let tr = document.createElement('tr');
  
+ // IF IT IS THE FIRST ROW, IT IS THE COLUMN HEADER
  if (i === 0 ) {
-  let td = document.createElement('td');
-  td.innerHTML = '<p style="text-align: right;"><span>IPA spelling<span class="triangle-right"></span></span></p><p style="border-bottom: 1px solid #999;"></p><p><span class="triangle-down"></span>letter combo</p>';
-  tr.appendChild(td);
+  let th = document.createElement('th');
+  th.innerHTML = '<p style="text-align: right;"><span>IPA spelling<span class="triangle-right"></span></span></p><p style="border-bottom: 1px solid #999;"></p><p><span class="triangle-down"></span>letter combo</p>';
+  th.classList.add('no-highlight');
+  tr.appendChild(th);
+  
+  
+  
+  
   
   for (let j = 0; j < IPA_prononciations.length; j++) {
   
   
     // THESE ARE THE COLUMN HEADER
-    let td = document.createElement('td');
+    let td = document.createElement('th');
     
     td.classList.add('column-header');
+    td.classList.add('no-highlight');
     td.classList.add(IPA_prononciations[j]);
     
     td.addEventListener('click', function() {
@@ -66,6 +96,16 @@ for (let i = 0; i < letter_combinations.length+1; i++) {
     tr.appendChild(td);
   }
   
+  myhead.appendChild(tr);
+  
+  /*
+  let p = document.createElement('tr');
+  let p2 = document.createElement('th');
+  p.appendChild(p2);
+  //p2.style.padding = 0;
+  
+  myhead.appendChild(p);
+  */
   
  }
  
@@ -73,13 +113,14 @@ for (let i = 0; i < letter_combinations.length+1; i++) {
  
  
   // ROW HEADERS
-  let td = document.createElement('td');
-  td.innerHTML = '<p>' + letter_combinations[i-1] + '</p>';
-  td.classList.add(letter_combinations[i-1]);
-  td.classList.add('row-header');
-  tr.appendChild(td);
+  let th = document.createElement('th');
+  th.innerHTML = '<p>' + letter_combinations[i-1] + '</p>';
+  th.classList.add(letter_combinations[i-1]);
+  th.classList.add('row-header');
+  th.classList.add('no-highlight');
+  tr.appendChild(th);
   
-  td.addEventListener('click', function() {
+  th.addEventListener('click', function() {
     let letter_combo = letter_combinations[i-1];
     obj.row = letter_combo;
     console.log(obj);
@@ -114,14 +155,14 @@ for (let i = 0; i < letter_combinations.length+1; i++) {
   
 
   
-  
+  mybody.appendChild(tr);
   
   
  }
  
  
  
- mytable.appendChild(tr);
+ 
  
  
  
@@ -138,10 +179,18 @@ for (let i = 0; i < letter_combinations.length+1; i++) {
 
 
 function applyHighlight(obj) {
+  
+  // REMOVE ALL THE HIGHLIGHTING
       let td_els = document.getElementsByTagName('td');
       for (let i = 0; i < td_els.length; i++) {
         let el = td_els[i];
-        //el.style.backgroundColor = '#fff';
+
+        el.classList.remove('highlight');
+        el.classList.add('no-highlight');
+      }
+      let th_els = document.getElementsByTagName('th');
+      for (let i = 0; i < th_els.length; i++) {
+        let el = th_els[i];
         el.classList.remove('highlight');
         el.classList.add('no-highlight');
       }
